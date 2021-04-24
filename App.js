@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import {createStackNavigator} from "@react-navigation/stack";
-import { NavigationContainer} from "@react-naviagtion/native";
+import { NavigationContainer} from "@react-navigation/native";
 import Constants from 'expo-constants';
 import * as SQLite from "expo-sqlite";
 import NotesStack from "./screens/NotesStack"

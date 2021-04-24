@@ -1,19 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    FlatList,
-        } from "react-native";
-import {Ionicons} from "@expo/vector-icons";
+import { StyleSheet, Text, View, TouchableOpacity, FlatList} from "react-native";
+import {Entypo} from "@expo/vector-icons";
 import * as SQLite from "expo-sqlite";
 import * as FileSystem from "expo-file-system";
 
 const db = SQLite.openDatabase("notes.db");
 console.log(FileSystem.documentDirectory);
 
-export default function NotesScreen({navigation, route}) {
+export default function NotesScreen({route, navigation}) {
     const [notes, setNotes] = useState([]);
 
     function refreshNotes() {
@@ -21,8 +15,8 @@ export default function NotesScreen({navigation, route}) {
             tx.executeSql(
                 "SELECT * FROM notes",
                 null,
-                (txObj, { row: { _array} }) => setNotes(_array),
-                (txObj, error) => console.log('Error: ${error}')
+                (txObj, { rows: { _array} }) => setNotes(_array),
+                (txObj, error) => console.log("Error: ", error)
             );
         });
     }
@@ -32,13 +26,10 @@ export default function NotesScreen({navigation, route}) {
         db.transaction(
             (tx) => {
                 tx.executeSql(
-                    'CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, done INT)'
+                    'CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, done INT);'
                 );
-            },
-            null,
-            refreshNotes
-        );
-    },[]);
+            },null,refreshNotes);
+        }, []);
 
 // This is to set up the top right button
 useEffect(() =>   {
@@ -67,10 +58,7 @@ useEffect(()    => {
                 tx.executeSql("INSERT INTO notes (done, title) VALUE (0, ?)",[
                     route.params.text,
                 ]);
-            },
-                null,
-               refreshNotes
-               );
+            }, null, refreshNotes);
             }
         },  [route.params?.text]);
 }
