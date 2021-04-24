@@ -1,21 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {createStackNavigator} from "@react-navigation/stack";
+import { NavigationContainer} from "@react-naviagtion/native";
+import Constants from 'expo-constants';
+import * as SQLite from "expo-sqlite";
+import NotesStack from "./screens/NotesStack"
+import AddScreen from "./screens/AddScreen"
+
+const Stack = createStackNavigator();
+
+const db = SQLite.openDatabase("notes.db");
+
+function NotesScreen({navigation}) {
+    return <View style={styles.container}></View>;
+}
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+        <Stack.Navigator modal="modal" headerMode= "none">
+          <Stack.Screen 
+            name="Notes Stack"
+            component={NotesStack}
+              options={{ headerShown: false
+                }}
+          />    
+              <Stack.Screen name="Add Note" component={AddScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
