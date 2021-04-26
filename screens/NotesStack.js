@@ -4,7 +4,7 @@
 
     const InnerStack = createStackNavigator();
 
-    export default function NotesStack() {
+    export default function NotesStack() {  // Here, NotesStack calling for NotesScreen...
         return (
             <InnerStack.Navigator>
                 <InnerStack.Screen
@@ -17,7 +17,7 @@
                             fontSize:30,
                         },
                         headerStyle: {
-                            height: 20,
+                            height: 120,
                             backgroundColor:"aquamarine",
                             borderBottomColor:"#ccc",
                             borderBottomWidth: 1,

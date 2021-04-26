@@ -1,37 +1,40 @@
 import React from "react";
+import {useState} from "react"; 
 import {Text, StyleSheet, View, TouchableOpacity, TextInput} from "react-native";
 
-export default function AddScreen({route, navigation}) {
+
+export default function AddScreen({ navigation}) {
     const [text, setText] = useState("");
 
+    /* This is the add To Do screen */
     return (
-        <View style={{ flex:1, alignItems: "center", justifyContent: "center"}}>
-            <Text style={styles.label}> This is the add To Do screen         
-            </Text>
-
-            <TextInput
+        <View style={{ flex:1, alignItems: "center", justifyContent: "center" }}>
+            <Text style={styles.label}>Add your todo</Text>
+             <TextInput
                 style={styles.textInput}
                 value={text}
                 onChangeText={(newText) => setText(newText)}></TextInput>
 
-            <View style={styles.buttons}>
+              <View style={styles.buttons}>
                 <TouchableOpacity
-                    onPress={() => navigation.goBack()}
+                    onPress={() => navigation.navigate("Notes",{text})}   // from Task 8, page 162
                     style={[styles.button, styles.submitButton]}>
                     <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
-                
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
                     style={[styles.button,styles.cancelButton]}>
-                    <Text style= {styles.buttonText}>Dismiss</Text>
+                    <Text style= {styles.buttonText}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={(text) => navigation.deleteNote()}           // Delete feature
+                    style={[styles.button,styles.deleteButton]}>
+                    <Text style= {styles.buttonText}>Delete</Text>
                 </TouchableOpacity>
                 </View>
 
-                <Text style={{marginTop:40, color:"pink"}}>
-                    Type here:
-                </Text>
-                <Text style= {{color:"#333", marginTop:10 }}>{text}</Text>
+                <Text style={{marginTop: 40, color: "purple" }}>Done by David Ong Teck Wee</Text>
+                <Text style={{color: "#333", marginTop:10 }}>{text}</Text>
         </View>
     );
 }
@@ -64,6 +67,9 @@ const styles = StyleSheet.create({
     },
     cancelButton: {
       backgroundColor: "aquamarine",
+    },
+    deleteButton: {
+      backgroundColor: "maroon",
     },
    });
    
