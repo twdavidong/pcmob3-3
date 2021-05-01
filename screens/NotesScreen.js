@@ -92,7 +92,9 @@ export default function NotesScreen({ route, navigation }) {
                 paddingTop: 20,
                 paddingBottom: 20,
                 borderBottomColor: "#ccc",
-                borderBottomWidth: 1,                
+                borderBottomWidth: 1,           
+                flexDirection:"row",     
+                justifyContent:"space-between",
         }}
       ><Text style={{textAlign: "left", fontSize: 16, }}>{item.title}</Text><View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => this.deleteNote(item.id)}>
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   }, buttonContainer: {
-    flexDirection:"row",
-    justifyContent:"space-between"
-  }
+    
+    
+   }
  });
