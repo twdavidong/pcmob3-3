@@ -26,11 +26,6 @@ export default function AddScreen({ navigation}) {
                     style={[styles.button,styles.cancelButton]}>
                     <Text style= {styles.buttonText}>Cancel</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={(text) => navigation.deleteNote()}           // Delete feature
-                    style={[styles.button,styles.deleteButton]}>
-                    <Text style= {styles.buttonText}>Delete</Text>
-                </TouchableOpacity>
                 </View>
 
                 <Text style={{marginTop: 40, color: "purple" }}>Done by David Ong Teck Wee</Text>
@@ -67,9 +62,6 @@ const styles = StyleSheet.create({
     },
     cancelButton: {
       backgroundColor: "aquamarine",
-    },
-    deleteButton: {
-      backgroundColor: "maroon",
     },
    });
    

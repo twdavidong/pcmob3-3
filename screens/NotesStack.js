@@ -18,7 +18,7 @@
                         },
                         headerStyle: {
                             height: 120,
-                            backgroundColor:"aquamarine",
+                            backgroundColor:"blue",
                             borderBottomColor:"#ccc",
                             borderBottomWidth: 1,
                         },
